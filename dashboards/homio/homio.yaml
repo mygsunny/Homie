@@ -12,57 +12,112 @@ views:
           image: lounge
           image_position: center center
           show_humid: true
-          humid_sensor: sensor.living_room_sensor_humidity
+          humid_sensor: sensor.outside_humidity
           show_temp: true
-          temp_sensor: sensor.living_room_sensor_temperature
+          temp_sensor: sensor.outside_temperature
           show_motion: true
-          motion_sensor: binary_sensor.hue_motion_sensor_living_room
+          motion_sensor: binary_sensor.basement_floor_wet
         template:
           - homio_room
         name: Lounge Room
       - type: custom:layout-card
         layout_type: custom:grid-layout
-        layout: !include /config/dashboards/templates/includes/homio_entity_layout.yaml
+#        layout: !include /config/dashboards/templates/includes/homio_entity_layout.yaml
+        layout:
+          position: absolute
+          grid-auto-columns: 260px
+          grid-auto-flow: column
+          grid-template-rows: repeat(2, 170px)
+          grid-column-gap: 5px
+          grid-row-gap: 5px
+          margin: 0 0 0 8vw
+          padding: 0
+          inset: auto 0 40px 0
+          overflow-x: auto
+          overflow-y: hidden
         cards:
           - type: custom:button-card
             variables:
               icon: window
             template:
               - homio_entity
-            entity: binary_sensor.living_room_windows
+            entity: cover.hall_window
             name: Windows
           - type: custom:button-card
             variables:
-              icon: lamp
+              icon: window
             template:
-              - homio_light
-            entity: light.hue_living_room_lamp
-            name: Lamp
+              - homio_cover
+            entity: cover.hall_window
+            name: Windows
           - type: custom:button-card
             variables:
               icon: pendent
             template:
               - homio_light
-            entity: light.hue_living_room_front
+            entity: light.bed_light
             name: Front Light
           - type: custom:button-card
             variables:
               icon: pendent
             template:
               - homio_light
-            entity: light.hue_living_room_back
+            entity: light.kitchen_lights
             name: Back Light
           - type: custom:button-card
             variables:
               icon: tv
             template:
               - homio_entity
-            entity: media_player.living_room_samsung_tv
+            entity: media_player.lounge_room
             name: Samsung TV
           - type: custom:button-card
             variables:
               icon: apple_tv
             template:
               - homio_entity
-            entity: media_player.apple_tv
+            entity: media_player.bedroom
+            name: Apple TV
+#################
+          - type: custom:button-card
+            variables:
+              icon: window
+            template:
+              - homio_entity
+            entity: cover.hall_window
+            name: Windows
+          - type: custom:button-card
+            variables:
+              icon: lamp
+            template:
+              - homio_light
+            entity: light.ceiling_lights
+            name: Lamp
+          - type: custom:button-card
+            variables:
+              icon: pendent
+            template:
+              - homio_light
+            entity: light.bed_light
+            name: Front Light
+          - type: custom:button-card
+            variables:
+              icon: pendent
+            template:
+              - homio_light
+            entity: light.kitchen_lights
+            name: Back Light
+          - type: custom:button-card
+            variables:
+              icon: tv
+            template:
+              - homio_entity
+            entity: media_player.lounge_room
+            name: Samsung TV
+          - type: custom:button-card
+            variables:
+              icon: apple_tv
+            template:
+              - homio_entity
+            entity: media_player.bedroom
             name: Apple TV
