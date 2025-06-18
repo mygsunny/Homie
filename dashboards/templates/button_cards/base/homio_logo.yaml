@@ -9,7 +9,7 @@ homio_logo:
     name:
       - color: var(--primary-text-color)
       - letter-spacing: 2px
-      - font-size: 18px
+      - font-size: 32px
       - font-weight: 700
       - text-transform: uppercase
       - justify-self: start
