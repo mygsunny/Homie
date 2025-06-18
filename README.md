@@ -1,3 +1,11 @@
+- Added cover card.
+- Added 2nd row of tiles to the dashboard.
+- Increase the front size for the logo, clock, temp, and humidity sensor.
+- Changed the clock from 24hr to 12hr.
+- Changed the lights card click behavior.  
+
+
+
 ## **🏠 Welcome to Homio**
 
 Homio is a clean, minimal, and fully YAML-based dashboard for Home Assistant that i build for a bit of fun. It's still work in progress but wanted to share it with you after receiving many requests for it. It’s built with tablets in mind — perfect for a wall-mounted screen — but it also works well on mobile thanks to its responsive layout. Everything is done in YAML to give you full control and make it easier to share, reuse, and tweak. I recommend to use the visual studio code editor plugin in home assistant to make coding that little bit easier.
