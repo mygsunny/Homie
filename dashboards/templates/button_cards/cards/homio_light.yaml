@@ -8,19 +8,21 @@ homio_light:
       "%"} else return "Off"
     ]]]
   tap_action:
-    action: |
-      [[[
-        if(entity.state === "off") 
-        return "toggle"
-        else return "none"
-      ]]]
+     action: toggle
+#    action: |
+#      [[[
+#        if(entity.state === "off") 
+#        return "toggle"
+#        else return "none"
+#      ]]]
   hold_action:
-    action: |
-      [[[
-        if(entity.state === "on") 
-        return "toggle"
-        else return "none"
-      ]]]
+     action: more-info
+#    action: |
+#      [[[
+#        if(entity.state === "on") 
+#        return "toggle"
+#        else return "none"
+#      ]]]
   styles:
     label:
       - position: absolute
