@@ -1,0 +1,86 @@
+# /config/dashboards/templates/button_cards/cards/homio_sensor_graph.yaml
+
+homio_sensor_graph:
+  template:
+    - homio_default
+  
+  # NEW: This line makes the state (the temperature value) visible on the card.
+  show_state: true
+
+  styles:
+    grid:
+      - grid-template-columns: 1fr min-content
+      - grid-template-rows: min-content min-content 1fr
+      - grid-template-areas: |
+          "n i"
+          "s i"
+          "graph graph"
+      # REMOVED: place-content: center
+    card:
+      - background: "rgba(255,255,255,0.1)"
+      - backdrop-filter: blur(12px)
+      - height: 170px
+      # CHANGED: Increased top padding to push the text down to the middle
+      - padding: 65px 40px 15px 40px
+      - scroll-snap-align: start
+    name:
+      - justify-self: start
+      - font-size: 16px
+      - font-weight: 600
+    state:
+      - justify-self: start
+      - font-size: 14px
+      - font-weight: 700
+      - opacity: 0.8
+      - margin-top: 2px 
+    img_cell:
+      - width: 30px
+      - height: 30px
+      - background: transparent
+    icon:
+      - width: 100%
+      - height: 100%
+# ...
+
+  show_entity_picture: true
+  entity_picture: |
+    [[[
+      const icon = variables.icon;
+      return `/local/images/Homio/icons/${icon}.svg`
+    ]]]
+
+  # This logic already creates the state string (e.g., "60.1 °F").
+  # show_state: true (added above) will now make it appear.
+  state_display: |
+    [[[
+      if (entity) {
+        const unit = entity.attributes.unit_of_measurement || "";
+        return `${entity.state} ${unit}`;
+      }
+      return "Unknown";
+    ]]]
+  
+  custom_fields:
+    graph:
+      card:
+        type: custom:mini-graph-card
+        hours_to_show: "[[[ return variables.graph_hours || 24; ]]]"
+        line_width: 4
+        font_size: 75
+        entities:
+          - entity: "[[[ return entity.entity_id ]]]"
+            color: "white"
+        show:
+          name: false
+          icon: false
+          state: false
+          legend: false
+          labels: false
+        card_mod:
+          style: |
+            ha-card {
+              background: transparent;
+              box-shadow: none;
+              border: none;
+              margin: 0 -40px -10px -40px;
+            }
